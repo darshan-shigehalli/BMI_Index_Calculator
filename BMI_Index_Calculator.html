@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Index Calculator</title>
+    <style>
+        label {
+            margin: 20px;
+            font-size: 30px;
+        }
+
+        h1 {
+            margin: 20px;
+        }
+
+        button {
+            display: flex;
+            height: 40px;
+            width: 150px;
+            margin-top: 50px;
+            margin-left: 450px;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            margin-bottom: 50px;
+        }
+
+        input {
+            height: 30px;
+            width: 200px;
+        }
+
+        body {
+            background-color: aliceblue
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-left: 350px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>BMI index calculator</h1>
+    <form>
+        <label>Enter your height : </label>
+        <input type="number" placeholder="height in meters" id="height" required>
+        <label>Enter your weight</label>
+        <input type="number" placeholder="weight in kilo grams" id="weight" required>
+        <button type="button">Calculate</button>
+    </form>
+</body>
+<script>
+    document.querySelector('button').addEventListener('click', (e) => {
+        e.preventDefault();
+        const height = document.querySelector('#height').value;
+        console.log(height)
+        const weight = document.querySelector('#weight').value;
+        console.log(weight)
+        const bmi_index = weight / (height * height);
+        let message;
+        console.log(bmi_index);
+        if (bmi_index < 18.5) {
+            message = `You are UnderWeighted person`
+        } else if (bmi_index >= 18.5 && bmi_index <= 24.9) {
+            message = `You are Normal weighted person`
+        } else if (bmi_index >= 25 && bmi_index <= 29.9) {
+            message = `You are Over weighted person`
+        } else if (bmi_index > 30) {
+            message = `You have Obesity`
+        }
+        let existing = document.querySelector('h2');
+        if (existing) {
+            existing.remove();
+        }
+        let result = document.createElement('h2')
+        if (message != undefined) {
+            result.innerText = message;
+            document.querySelector('body').appendChild(result);
+        }
+    })
+</script>
+
+</html>
